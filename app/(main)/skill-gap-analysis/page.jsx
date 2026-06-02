@@ -37,9 +37,12 @@ export default function SkillGapAnalysisPage() {
       if (!response.ok) {
         let errorMessage = "Failed to analyze skills";
         try {
-          const errorData = await response.json();
-          if (errorData.detail) errorMessage = errorData.detail;
-        } catch (e) {}
+          const errorText = await response.text();
+          const errorData = JSON.parse(errorText);
+          if (errorData.detail) errorMessage = typeof errorData.detail === 'string' ? errorData.detail : JSON.stringify(errorData.detail);
+        } catch (e) {
+          errorMessage = `Server Error (${response.status}): Failed to connect to Python backend.`;
+        }
         throw new Error(errorMessage);
       }
       
