@@ -23,7 +23,8 @@ export default function SkillGapAnalysisPage() {
     setResult(null)
     
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000"}/api/analyze-skills`, {
+      const baseUrl = (process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000").replace(/\/$/, "");
+      const response = await fetch(`${baseUrl}/api/analyze-skills`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

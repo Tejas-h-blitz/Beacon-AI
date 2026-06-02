@@ -24,8 +24,8 @@ export default function SkillGapAnalysis() {
     setResult(null)
     
     try {
-      // Note: Adjust the URL port if your FastAPI backend runs on a different port
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000"}/api/analyze-skills`, {
+      const baseUrl = (process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000").replace(/\/$/, "");
+      const response = await fetch(`${baseUrl}/api/analyze-skills`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
