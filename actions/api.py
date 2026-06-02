@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import uuid
 import json
+import re
 from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_classic.memory import ConversationSummaryBufferMemory
@@ -130,10 +131,9 @@ Do not include any markdown formatting like ```json ... ```, just return the raw
     
     # Gemini occasionally wraps responses in Markdown blocks, so we clean it
     content = response.content.strip()
-    if content.startswith("```json"):
-        content = content[7:-3].strip()
-    elif content.startswith("```"):
-        content = content[3:-3].strip()
+    json_match = re.search(r'```(?:json)?\s*([\s\S]*?)\s*```', content)
+    if json_match:
+        content = json_match.group(1).strip()
         
     try:
         return json.loads(content)

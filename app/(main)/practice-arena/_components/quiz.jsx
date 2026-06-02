@@ -101,7 +101,9 @@ export default function Quiz() {
     return (
       <Card className="mx-2">
         <CardHeader>
-          <CardTitle>Ready to test your knowledge?</CardTitle>
+          <CardTitle className="text-2xl md:text-3xl">
+            Ready to test your knowledge?
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-muted-foreground">
@@ -123,12 +125,12 @@ export default function Quiz() {
   return (
     <Card className="mx-2">
       <CardHeader>
-        <CardTitle>
+        <CardTitle className="text-xl md:text-2xl">
           Question {currentQuestion + 1} of {quizData.length}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <p className="text-lg font-medium">{question.question}</p>
+        <p className="text-base md:text-lg font-medium">{question.question}</p>
         <RadioGroup
           onValueChange={handleAnswer}
           value={answers[currentQuestion]}
@@ -149,12 +151,13 @@ export default function Quiz() {
           </div>
         )}
       </CardContent>
-      <CardFooter className="flex justify-between">
+      <CardFooter className="flex flex-col sm:flex-row gap-4">
         {!showExplanation && (
           <Button
             onClick={() => setShowExplanation(true)}
             variant="outline"
             disabled={!answers[currentQuestion]}
+            className="w-full sm:w-auto"
           >
             Show Explanation
           </Button>
@@ -162,7 +165,7 @@ export default function Quiz() {
         <Button
           onClick={handleNext}
           disabled={!answers[currentQuestion] || savingResult}
-          className="ml-auto"
+          className="w-full sm:w-auto sm:ml-auto"
         >
           {savingResult && (
             <BarLoader className="mt-4" width={"100%"} color="gray" />

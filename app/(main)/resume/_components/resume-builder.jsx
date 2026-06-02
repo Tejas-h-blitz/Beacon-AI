@@ -148,15 +148,16 @@ export default function ResumeBuilder({ initialContent }) {
 
   return (
     <div data-color-mode="light" className="space-y-4">
-      <div className="flex flex-col md:flex-row justify-between items-center gap-2">
-        <h1 className="font-bold gradient-title text-5xl md:text-6xl">
+      <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-2">
+        <h1 className="font-bold gradient-title text-3xl md:text-5xl lg:text-6xl text-center md:text-left">
           Resume Builder
         </h1>
-        <div className="space-x-2">
+        <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
           <Button
             variant="destructive"
             onClick={handleSubmit(onSubmit)}
             disabled={isSaving}
+            className="w-full sm:w-auto"
           >
             {isSaving ? (
               <>
@@ -170,7 +171,11 @@ export default function ResumeBuilder({ initialContent }) {
               </>
             )}
           </Button>
-          <Button onClick={generatePDF} disabled={isGenerating}>
+          <Button 
+            onClick={generatePDF} 
+            disabled={isGenerating}
+            className="w-full sm:w-auto"
+          >
             {isGenerating ? (
               <>
                 <Loader2 className="h-4 w-4 animate-spin" />

@@ -56,7 +56,7 @@ export default function CoverLetterList({ coverLetters }) {
       {coverLetters.map((letter) => (
         <Card key={letter.id} className="group relative ">
           <CardHeader>
-            <div className="flex items-start justify-between">
+            <div className="flex flex-col md:flex-row gap-4 items-start justify-between">
               <div>
                 <CardTitle className="text-xl gradient-title">
                   {letter.jobTitle} at {letter.companyName}

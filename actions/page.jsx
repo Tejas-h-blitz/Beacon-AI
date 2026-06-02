@@ -25,7 +25,7 @@ export default function SkillGapAnalysis() {
     
     try {
       // Note: Adjust the URL port if your FastAPI backend runs on a different port
-      const response = await fetch("http://127.0.0.1:8000/api/analyze-skills", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000"}/api/analyze-skills`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -37,14 +37,19 @@ export default function SkillGapAnalysis() {
       })
       
       if (!response.ok) {
-        throw new Error("Failed to analyze skills")
+        let errorMessage = "Failed to analyze skills";
+        try {
+          const errorData = await response.json();
+          if (errorData.detail) errorMessage = errorData.detail;
+        } catch (e) {}
+        throw new Error(errorMessage);
       }
       
       const data = await response.json()
       setResult(data)
     } catch (error) {
       console.error(error)
-      alert("Something went wrong during the analysis.")
+      alert(error.message || "Something went wrong during the analysis.")
     } finally {
       setLoading(false)
     }

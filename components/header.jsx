@@ -37,12 +37,12 @@ export default async function Header() {
             alt="beacon ai Logo"
             width={250}
             height={70}
-            className="h-12 py-1 w-auto object-contain"
+            className="h-10 md:h-12 py-1 w-auto object-contain"
           />
         </Link>
 
         {/* Action Buttons */}
-        <div className="flex items-center space-x-3 md:space-x-5">
+        <div className="flex items-center space-x-2 md:space-x-4">
           <SignedIn>
             <Link href="/dashboard">
               <Button
@@ -60,10 +60,10 @@ export default async function Header() {
             {/* Growth Tools Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button className="flex items-center gap-2">
-                  <StarsIcon className="h-4 w-4" />
+                <Button className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 md:px-4">
+                  <StarsIcon className="h-4 w-4 sm:h-5 sm:w-5" />
                   <span className="hidden md:block">Growth Tools</span>
-                  <ChevronDown className="h-4 w-4" />
+                  <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48">

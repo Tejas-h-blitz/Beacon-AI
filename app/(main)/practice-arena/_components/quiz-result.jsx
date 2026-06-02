@@ -14,8 +14,8 @@ export default function QuizResult({
 
   return (
     <div className="mx-auto">
-      <h1 className="flex items-center gap-2 text-3xl gradient-title">
-        <Trophy className="h-6 w-6 text-yellow-500" />
+      <h1 className="flex items-center gap-2 text-2xl md:text-3xl gradient-title">
+        <Trophy className="h-5 w-5 md:h-6 md:w-6 text-yellow-500" />
         Quiz Results
       </h1>
 
@@ -30,7 +30,7 @@ export default function QuizResult({
         {result.improvementTip && (
           <div className="bg-muted p-4 rounded-lg">
             <p className="font-medium">Improvement Tip:</p>
-            <p className="text-muted-foreground">{result.improvementTip}</p>
+            <p className="text-sm md:text-base text-muted-foreground">{result.improvementTip}</p>
           </div>
         )}
 

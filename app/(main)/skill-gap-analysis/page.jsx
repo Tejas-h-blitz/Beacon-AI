@@ -23,7 +23,7 @@ export default function SkillGapAnalysisPage() {
     setResult(null)
     
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/analyze-skills", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000"}/api/analyze-skills`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -35,24 +35,29 @@ export default function SkillGapAnalysisPage() {
       })
       
       if (!response.ok) {
-        throw new Error("Failed to analyze skills")
+        let errorMessage = "Failed to analyze skills";
+        try {
+          const errorData = await response.json();
+          if (errorData.detail) errorMessage = errorData.detail;
+        } catch (e) {}
+        throw new Error(errorMessage);
       }
       
       const data = await response.json()
       setResult(data)
     } catch (error) {
       console.error(error)
-      alert("Something went wrong while analyzing the skill gap.")
+      alert(error.message || "Something went wrong while analyzing the skill gap.")
     } finally {
       setLoading(false)
     }
   }
 
   return (
-    <div className="container mx-auto pt-24 pb-10 max-w-4xl space-y-8">
+    <div className="container mx-auto px-4 md:px-6 pt-24 pb-10 max-w-4xl space-y-6 md:space-y-8">
       <div>
-        <h1 className="font-bold gradient-title text-5xl md:text-6xl">Skill Gap Analysis</h1>
-        <p className="text-muted-foreground mt-2">
+        <h1 className="font-bold gradient-title text-3xl md:text-5xl lg:text-6xl">Skill Gap Analysis</h1>
+        <p className="text-muted-foreground mt-2 text-sm md:text-base">
           Discover what you need to learn to land your targeted role.
         </p>
       </div>
@@ -82,7 +87,11 @@ export default function SkillGapAnalysisPage() {
               rows={4}
             />
           </div>
-          <Button onClick={handleAnalyze} disabled={loading || !targetRole || !currentSkills}>
+          <Button 
+            onClick={handleAnalyze} 
+            disabled={loading || !targetRole || !currentSkills}
+            className="w-full md:w-auto"
+          >
             {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             {loading ? "Analyzing..." : "Analyze Skill Gap"}
           </Button>

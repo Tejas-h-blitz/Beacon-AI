@@ -69,7 +69,7 @@ export default function CoverLetterGenerator() {
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             {/* Form fields remain the same */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="companyName">Company Name</Label>
                 <Input
@@ -115,7 +115,7 @@ export default function CoverLetterGenerator() {
             </div>
 
             <div className="flex justify-end">
-              <Button type="submit" disabled={generating}>
+              <Button type="submit" disabled={generating} className="w-full md:w-auto">
                 {generating ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />

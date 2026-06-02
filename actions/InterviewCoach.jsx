@@ -28,7 +28,7 @@ export default function InterviewCoach() {
     if (!jobDescription.trim() || isLoading) return;
     setIsLoading(true);
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/interview/start", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000"}/api/interview/start`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ job_description: jobDescription }),
@@ -56,7 +56,7 @@ export default function InterviewCoach() {
     setIsLoading(true);
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/interview/chat", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000"}/api/interview/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ session_id: sessionId, message: userMsg }),
@@ -75,7 +75,7 @@ export default function InterviewCoach() {
     if (!sessionId || isLoading) return;
     setIsLoading(true);
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/interview/feedback", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000"}/api/interview/feedback`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ session_id: sessionId }),
@@ -97,7 +97,7 @@ export default function InterviewCoach() {
         {/* Header */}
         <div className="py-6 md:py-8 px-4 md:px-8 border-b flex items-center justify-between">
           <div>
-            <h1 className="text-6xl font-bold gradient-title mb-2">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold gradient-title mb-2">
               AI Interview Coach
             </h1>
             <p className="text-muted-foreground text-sm md:text-base font-medium">
@@ -203,10 +203,10 @@ export default function InterviewCoach() {
         {/* Input Panel */}
         {sessionId && (
           <form onSubmit={handleSend} className="p-4 md:p-6 bg-background border-t border-border">
-            <div className="flex items-center gap-6 max-w-4xl mx-auto w-full">
+            <div className="flex items-center gap-2 sm:gap-4 md:gap-6 max-w-4xl mx-auto w-full">
               <input
                 type="text"
-                className="flex-1 p-4 md:p-5 bg-background border border-input rounded-2xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all shadow-sm"
+                className="flex-1 p-3 sm:p-4 md:p-5 bg-background border border-input rounded-2xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all shadow-sm"
                 placeholder="Type your response here..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
@@ -214,10 +214,10 @@ export default function InterviewCoach() {
               />
               <Button 
                 type="submit" 
-                className="h-10 md:h-12 rounded-xl shadow-sm transition-transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:hover:scale-100 px-8"
+                className="h-10 sm:h-11 md:h-12 rounded-xl shadow-sm transition-transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:hover:scale-100 px-4 sm:px-6 md:px-8"
                 disabled={isLoading || !input.trim()}
               >
-                <Send className="h-4 w-4 mr-2" />
+                <Send className="h-4 w-4" />
               </Button>
             </div>
             

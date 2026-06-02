@@ -75,13 +75,13 @@ const DashboardView = ({ insights }) => {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center animate-in fade-in slide-in-from-bottom-4 duration-500">
         <Badge variant="outline">Last updated: {lastUpdatedDate}</Badge>
       </div>
 
       {/* Market Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card>
+        <Card className="animate-in fade-in slide-in-from-bottom-4 duration-500" style={{ animationDelay: '100ms', animationFillMode: 'both' }}>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
               Market Outlook
@@ -96,7 +96,7 @@ const DashboardView = ({ insights }) => {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="animate-in fade-in slide-in-from-bottom-4 duration-500" style={{ animationDelay: '200ms', animationFillMode: 'both' }}>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
               Industry Growth
@@ -111,7 +111,7 @@ const DashboardView = ({ insights }) => {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="animate-in fade-in slide-in-from-bottom-4 duration-500" style={{ animationDelay: '300ms', animationFillMode: 'both' }}>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Demand Level</CardTitle>
             <BriefcaseIcon className="h-4 w-4 text-muted-foreground" />
@@ -126,7 +126,7 @@ const DashboardView = ({ insights }) => {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="animate-in fade-in slide-in-from-bottom-4 duration-500" style={{ animationDelay: '400ms', animationFillMode: 'both' }}>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Top Skills</CardTitle>
             <Brain className="h-4 w-4 text-muted-foreground" />
@@ -144,7 +144,7 @@ const DashboardView = ({ insights }) => {
       </div>
 
       {/* Salary Ranges Chart */}
-      <Card className="col-span-4">
+      <Card className="animate-in fade-in slide-in-from-bottom-4 duration-500" style={{ animationDelay: '500ms', animationFillMode: 'both' }}>
         <CardHeader>
           <CardTitle>Salary Ranges by Role</CardTitle>
           <CardDescription>
@@ -156,8 +156,12 @@ const DashboardView = ({ insights }) => {
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={salaryData}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
+                <XAxis 
+                  dataKey="name" 
+                  tick={{ fontSize: 12 }}
+                  tickMargin={5}
+                />
+                <YAxis tick={{ fontSize: 12 }} />
                 <Tooltip
                   content={({ active, payload, label }) => {
                     if (active && payload && payload.length) {
@@ -186,7 +190,7 @@ const DashboardView = ({ insights }) => {
 
       {/* Industry Trends */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card>
+        <Card className="animate-in fade-in slide-in-from-bottom-4 duration-500" style={{ animationDelay: '600ms', animationFillMode: 'both' }}>
           <CardHeader>
             <CardTitle>Key Industry Trends</CardTitle>
             <CardDescription>
@@ -205,7 +209,7 @@ const DashboardView = ({ insights }) => {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="animate-in fade-in slide-in-from-bottom-4 duration-500" style={{ animationDelay: '700ms', animationFillMode: 'both' }}>
           <CardHeader>
             <CardTitle>Recommended Skills</CardTitle>
             <CardDescription>Skills to consider developing</CardDescription>
