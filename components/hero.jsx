@@ -15,6 +15,12 @@ const HeroSection = () => {
       const scrollPosition = window.scrollY;
       const scrollThreshold = 100;
 
+      // Disable sliding effect on mobile by forcing the final state
+      if (window.innerWidth < 768) {
+        imageElement.classList.add("scrolled");
+        return;
+      }
+
       if (scrollPosition > scrollThreshold) {
         imageElement.classList.add("scrolled");
       } else {
@@ -23,7 +29,15 @@ const HeroSection = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
+
+    // Set initial state based on current screen size
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
   }, []);
 
   return (
@@ -35,7 +49,7 @@ const HeroSection = () => {
             <br />
             Professional Success
           </h1>
-          <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl">
+          <p className="mx-auto max-w-[600px] px-4 md:px-0 text-muted-foreground md:text-xl">
             Advance your career with personalized guidance, interview prep, and
             AI-powered tools for job success.
           </p>

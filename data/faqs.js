@@ -25,8 +25,8 @@ export const faqs = [
       "Beacon ai tracks your performance across multiple practice interviews, providing detailed analytics and improvement suggestions. You can view your progress over time, identify areas for improvement, and receive AI-generated tips to enhance your interview skills based on your responses.",
   },
   {
-    question: "What kind of advice can I get from the AI Career Chat?",
+    question: "How does the AI Interview Coach help me prepare?",
     answer:
-      "Our AI Career Chat acts as your 24/7 personal career mentor. You can ask for real-time guidance on salary negotiations, role transitions, interview strategies, and handling workplace challenges. It provides continuous, tailored support whenever you need it.",
+      "Our AI Interview Coach conducts realistic mock interviews tailored to your target job description. It asks relevant technical and behavioral questions, evaluates your answers, and provides constructive feedback highlighting your strengths and suggesting specific areas for improvement.",
   },
 ];
