@@ -70,5 +70,23 @@ export async function getIndustryInsights() {
     return industryInsight;
   }
 
+  // If insights exist but the nextUpdate date has passed, generate new ones
+  if (new Date() > new Date(user.industryInsight.nextUpdate)) {
+    const insights = await generateAIInsights(user.industry);
+
+    const updatedInsight = await db.industryInsight.update({
+      where: {
+        id: user.industryInsight.id,
+      },
+      data: {
+        ...insights,
+        lastUpdated: new Date(),
+        nextUpdate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+      },
+    });
+
+    return updatedInsight;
+  }
+
   return user.industryInsight;
 }
