@@ -1,12 +1,14 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 const HeroSection = () => {
   const imageRef = useRef(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const imageElement = imageRef.current;
@@ -60,11 +62,14 @@ const HeroSection = () => {
               Get Started
             </Button>
           </Link>
-          <Link href="https://youtu.be/YeCcuJpniEc?si=j56Cg0IgzLjK4HS7">
-            <Button size="lg" variant="outline" className="px-8">
-              Watch Demo
-            </Button>
-          </Link>
+          <Button
+            size="lg"
+            variant="outline"
+            className="px-8"
+            onClick={() => setIsModalOpen(true)}
+          >
+            Watch Demo
+          </Button>
         </div>
         <div className="hero-image-wrapper mt-5 md:mt-0">
           <div ref={imageRef} className="hero-image">
@@ -79,6 +84,25 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="max-w-4xl p-0 bg-transparent border-0">
+          <DialogTitle className="sr-only">Watch Demo Video</DialogTitle>
+          <div className="aspect-video">
+            <iframe
+              src={
+                isModalOpen
+                  ? "https://www.youtube.com/embed/YeCcuJpniEc?autoplay=1"
+                  : undefined
+              }
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className="w-full h-full rounded-lg"
+            ></iframe>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
