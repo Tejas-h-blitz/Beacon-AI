@@ -1,7 +1,7 @@
 #  Beacon-AI: Full Stack AI Career Coach
 
 Beacon-AI is an advanced, AI-powered career development platform designed to help you advance your career. Built with Next.js, Neon DB, Prisma, and Google Gemini AI, it provides personalized tools like an intelligent Resume builder, Cover letter generator,Skill gap analysis and an adaptive Interview preparation system.
-
+ 
 
 ## ✨ Features
 
